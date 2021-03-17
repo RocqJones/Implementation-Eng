@@ -19,7 +19,9 @@
 * An API uses a common code language to specify functionality and set protocols which gives your applications the ability to transfer data.
 
 ```
-**Note:** Unless otherwise noted, all actions return 200 on success; those referencing a task ID return 404 if the ID is not found. The response body is empty unless specified otherwise. All non-empty response bodies are JSON. All actions that take a request body are JSON (not form-encoded).
+Note: Unless otherwise noted, all actions return 200 on success; those referencing a task ID return 404 if the ID is not found.<br>
+The response body is empty unless specified otherwise.<br> 
+All non-empty response bodies are JSON. All actions that take a request body are JSON (not form-encoded).
 ```
 
 #### b) WEBHOOKS / HTTP callbacks.
