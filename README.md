@@ -41,7 +41,7 @@ A computing interface that defines interactions between multiple software applic
 * **DELETE:** HTTP DELETE method is used to delete a resource from the server. Although, sending a message body on a DELETE request might cause some servers to reject the request.
 
 #### Step 1: Install Python3 'Requests'.
-In Python, we are lucky to have an excellent HTTP library: Kenneth Reitz’ `requests`. It’s one of the few projects worth treating as if it is part of the standard library:
+In Python, we are lucky to have an excellent HTTP library: *Kenneth Reitz’* `requests`. It’s one of the few projects worth treating as if it is part of the standard library:
 ```SHELL
 $ pip3 install requests
 ```
@@ -52,7 +52,7 @@ $ pip3 install requests
 import requests
 ```
 #### Step 4: Check the server response status.
-If the reponse is `OK` which is equivalent to `200` it means the server is respondind and you can print the json data. Here is the python code:
+If the reponse is `OK` which is equivalent to `200` it means the server is responding and you can print the json data. Here is the python code:
 ```Python
 import requests
 
