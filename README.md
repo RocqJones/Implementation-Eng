@@ -18,7 +18,7 @@
 #### a) Application Programming Interface (API).
 A computing interface that defines interactions between multiple software applications or mixed hardware-software intermediaries. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used,and the conventions to follow.
 * An API uses a common code language to specify functionality and set protocols which gives your applications the ability to transfer data.<br>
-**Below is a demonstration of a REST API with Python3. For the methods and endpoints I will be using [my own API from this project](https://github.com/RocqJones/Undergraduate-Project-2020):**<br>
+#### Below is a demonstration of a REST API with Python3. For the methods and endpoints I will be using [my own API (click on this link to view project for more endpoints)](https://github.com/RocqJones/Undergraduate-Project-2020):
 #### API JSON Format.
 ```JSON
 [
