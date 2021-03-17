@@ -7,12 +7,12 @@
 #### Information Technology (IT) integration vs continuous integration (CI).
 **IT integration, or systems integration**, is the connection of *data, applications, APIs, and devices* across your IT organization to be more *efficient, productive, and [agile](https://www.atlassian.com/agile/scrum)*. Integration is key when discussing business transformation—fundamental changes in how you conduct business to adapt as the market shifts—as it makes everything in IT work together.
 * IT integration isn’t the same as **continuous integration (CI)**, which is a developer practice where working copies of code are merged into a shared central repository multiple times a day. The goal of CI is to automate build and verifications so problems can be detected earlier—leading to faster development.
-![cicd](https://github.com/RocqJones/Implementation-Eng/imgs/continuous-integration-vs-delivery.png)
+![cicd](https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/continuous-integration-vs-delivery.png)
 
 #### Examples of Integration Protocols.
-##### a) Application Programming Interface (API).
-##### b) WEBHOOKS / HTTP callbacks.
-##### c) ORCHESTRATION.
+**a) Application Programming Interface (API).**<br>
+**b) WEBHOOKS / HTTP callbacks.**<br>
+**c) ORCHESTRATION.**<br>
 
 #### a) Application Programming Interface (API).
 * An API uses a common code language to specify functionality and set protocols which gives your applications the ability to transfer data.
