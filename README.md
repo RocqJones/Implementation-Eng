@@ -47,20 +47,27 @@ $ pip3 install requests
 ```
 #### Step 2: Get a list of action items from REST API endpoint.
 * REST API endpoint: `https://rocqjones.pythonanywhere.com/api/products/all` for this example.
-The python code will be as follows
+#### Step 3: Import 'requests'.
+```Python
+import requests
+```
+#### Step 4: Check the server response status.
+If the reponse is `OK` which is equivalent to `200` it means the server is respondind and you can print the json data. Here is the python code:
 ```Python
 import requests
 
-base_url = "https://rocqjones.pythonanywhere.com/api/products/all"
+def fetchData(url):
+    resp = requests.get(base_url)
+    
+    if resp.status_code != 200:
+        raise ApiError('GET /products/all/ {}'.format(resp.status_code))
+    else:
+        for items in resp.json():
+            print(items)
 
-resp = requests.get(base_url)
-
-if resp.status_code != 200:
-    raise ApiError('GET /products/all/ {}'.format(resp.status_code))
-
-else:
-    for items in resp.json():
-        print(items)
+if __name__ == '__main__':
+    base_url = "https://rocqjones.pythonanywhere.com/api/products/all"
+    fetchData(base_url)
 ```
 
 **Note:** *Unless otherwise noted, all actions return 200 on success; those referencing a task ID return 404 if the ID is not found. The response body is empty unless specified otherwise. All non-empty response bodies are JSON. All actions that take a request body are JSON (not form-encoded).*
