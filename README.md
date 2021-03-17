@@ -18,7 +18,9 @@
 #### a) Application Programming Interface (API).
 * An API uses a common code language to specify functionality and set protocols which gives your applications the ability to transfer data.
 
-<p style="background:light-blue">Note: Unless otherwise noted, all actions return 200 on success; those referencing a task ID return 404 if the ID is not found. The response body is empty unless specified otherwise. All non-empty response bodies are JSON. All actions that take a request body are JSON (not form-encoded).</p>
+```
+**Note:** Unless otherwise noted, all actions return 200 on success; those referencing a task ID return 404 if the ID is not found. The response body is empty unless specified otherwise. All non-empty response bodies are JSON. All actions that take a request body are JSON (not form-encoded).
+```
 
 #### b) WEBHOOKS / HTTP callbacks.
 * For webhooks, implementation is often *not code-based*. They often have modules that are programmable within a web application. Instead of being request-based, **webhooks are event-based**. *They only trigger when specific events occur within a third-party service*.
