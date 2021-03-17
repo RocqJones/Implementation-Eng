@@ -6,7 +6,7 @@
 * [Integration Protocols](https://en.wikipedia.org/wiki/System_integration): In software engineering, integration protocol is the aggregation of bringing together different sub-systems components into one system with the aim of delivering the overarching functionality while ensuring that they function interoperably.
 #### Information Technology (IT) integration vs continuous integration (CI).
 **IT integration, or systems integration**, is the connection of *data, applications, APIs, and devices* across your IT organization to be more *efficient, productive, and [agile](https://www.atlassian.com/agile/scrum)*. Integration is key when discussing business transformation—fundamental changes in how you conduct business to adapt as the market shifts—as it makes everything in IT work together.
-* IT integration isn’t the same as **continuous integration (CI)**, which is a developer practice where working copies of code are merged into a shared central repository multiple times a day. The goal of CI is to automate build and verifications so problems can be detected earlier—leading to faster development.
+* IT integration isn’t the same as **continuous integration (CI)**, which is a developer practice where working copies of code are merged into a shared central repository multiple times a day. The goal of CI is to automate build and verifications so problems can be detected earlier—leading to faster development.<br>
 ![cicd](https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/continuous-integration-vs-delivery.png)
 
 #### Examples of Integration Protocols.
