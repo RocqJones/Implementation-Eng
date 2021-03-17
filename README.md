@@ -16,13 +16,54 @@
 **c) ORCHESTRATION.**<br>
 
 #### a) Application Programming Interface (API).
-* An API uses a common code language to specify functionality and set protocols which gives your applications the ability to transfer data.
+A computing interface that defines interactions between multiple software applications or mixed hardware-software intermediaries. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used,and the conventions to follow.
+* An API uses a common code language to specify functionality and set protocols which gives your applications the ability to transfer data.<br>
+**Below is a demonstration of a REST API with Python3. For the methods and endpoints I will be using [my own API from this project](https://github.com/RocqJones/Undergraduate-Project-2020):**<br>
+#### API JSON Format.
+```JSON
+[
+    {
+      "demand": 14, 
+      "id": 1, 
+      "product_name": "Passion"
+    }, 
+    {
+      "demand": 12, 
+      "id": 2, 
+      "product_name": "Mangoes"
+    }
+]
+```
+#### Key Methods.
+* **GET:** HTTP GET method is used to request data from a specified resource.
+* **PUT:** HTTP PUT Used to modify a singular resource which is already a part of resources collection.
+* **POST:** HTTP POST methd is used to send data to a server to create or update a resource.
+* **DELETE:** HTTP DELETE method is used to delete a resource from the server. Although, sending a message body on a DELETE request might cause some servers to reject the request.
 
+#### Step 1: Install Python3 'Requests'.
+In Python, we are lucky to have an excellent HTTP library: Kenneth Reitz’ `requests`. It’s one of the few projects worth treating as if it is part of the standard library:
+```SHELL
+$ pip3 install requests
 ```
-Note: Unless otherwise noted, all actions return 200 on success; those referencing a task ID return 404 if the ID is not found.<br>
-The response body is empty unless specified otherwise.<br> 
-All non-empty response bodies are JSON. All actions that take a request body are JSON (not form-encoded).
+#### Step 2: Get a list of action items from REST API endpoint.
+* REST API endpoint: `https://rocqjones.pythonanywhere.com/api/products/all` for this example.
+The python code will be as follows
+```Python
+import requests
+
+base_url = "https://rocqjones.pythonanywhere.com/api/products/all"
+
+resp = requests.get(base_url)
+
+if resp.status_code != 200:
+    raise ApiError('GET /products/all/ {}'.format(resp.status_code))
+
+else:
+    for items in resp.json():
+        print(items)
 ```
+
+**Note:** *Unless otherwise noted, all actions return 200 on success; those referencing a task ID return 404 if the ID is not found. The response body is empty unless specified otherwise. All non-empty response bodies are JSON. All actions that take a request body are JSON (not form-encoded).*
 
 #### b) WEBHOOKS / HTTP callbacks.
 * For webhooks, implementation is often *not code-based*. They often have modules that are programmable within a web application. Instead of being request-based, **webhooks are event-based**. *They only trigger when specific events occur within a third-party service*.
