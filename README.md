@@ -57,7 +57,7 @@ If the reponse is `OK` which is equivalent to `200` it means the server is respo
 import requests
 
 def fetchData(url):
-    resp = requests.get(base_url)
+    resp = requests.get(url)
     
     if resp.status_code != 200:
         raise ApiError('GET /products/all/ {}'.format(resp.status_code))
