@@ -200,7 +200,7 @@ Notification.requestPermission(function(status) {
 We call the `requestPermission` method on the global Notification object. This displays a pop-up message from the browser requesting permission to allow notifications. The user's response is stored along with your app, so calling this again returns the user's last choice. Once the user grants permission, the app can display notifications.
 #### Display a notification
 * We can show a notification from the app's main script with the `showNotification` method (the "Invocation API"). Here is an example:<br>
-main.js
+`main.js`
 ```JavaScript
 function displayNotification() {
   if (Notification.permission == 'granted') {
@@ -212,7 +212,7 @@ function displayNotification() {
 ```
 #### Add notification options
 The showNotification method has an optional second argument for configuring the notification. The following example code demonstrates some of the available options. See the showNotification reference on MDN for a complete explanation of each option.<br>
-main.js
+`main.js`
 ```JavaScript
 function displayNotification() {
   if (Notification.permission == 'granted') {
@@ -240,8 +240,8 @@ function displayNotification() {
 #### The notificationclose event
 * If the user dismisses the notification through a direct action on the notification (such as a swipe in Android), it raises a notificationclose event inside the service worker.
 * This event is important because it tells you how the user is interacting with your notifications. You might, for example, log the event to your analytics database. Or, you might use the event to synchronize your database and avoid re-notifying the user of the same event.
-* Here is an example of a `notificationclose` event listener in the service worker:
-serviceworker.js
+* Here is an example of a `notificationclose` event listener in the service worker:<br>
+`serviceworker.js`
 ```JavaScript
 self.addEventListener('notificationclose', function(e) {
   var notification = e.notification;
@@ -254,15 +254,16 @@ self.addEventListener('notificationclose', function(e) {
 ### 3. Give examples of different encryption/hashing methods you have come across (one way and two way) and give example scripts in python 3 on how to achieve each one.
 **Encryption** is a two-way function; what is encrypted can be decrypted with the proper key.<br>
 * Encryption is the practice of scrambling information in a way that only someone with a corresponding key can unscramble and read it. Encryption is a two-way function. When you encrypt something, you’re doing so with the intention of decrypting it later.
-##### Common forms of encryption are:
+#### Common forms of encryption are:
 **1. Asymmetric Encryption** – This is the Public Key example we just gave. One key encrypts, the other key decrypts. The encryption only goes one way. This is the concept that forms the foundation for PKI (public key infrastructure), which is the trust model that undergirds SSL/TLS.<br>
 **2. Symmetric Encryption** – This is closer to a form of private key encryption. Each party has its own key that can both encrypt and decrypt. As we discussed in the example above, after the asymmetric encryption that occurs in the SSL handshake, the browser and server communicate using the symmetric session key that is passed along.
-<a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/encription.png" height="250" width="100%" ></a>
+<a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/encription.png" height="300" width="100%" ></a>
 
 **Hashing**, however, is a one-way function that scrambles plain text to produce a unique message digest. With a properly designed algorithm, there is no way to reverse the hashing process to reveal the original password.
-<a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/hashing.png" height="250" width="100%" ></a>
-##### Common Hashing Algorithms.
-Just like we did with encryption, let’s take a look at some of the most common hashing algorithms in use today.
+<a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/hashing.png" height="300" width="100%" ></a>
+
+#### Common Hashing Algorithms.
+Just like we did with encryption, let’s take a look at some of the most common hashing algorithms in use today.<br>
 **MD4** – MD4 is a self-loathing hash algorithm, created in 1990, even its creator, Ronald Rivest, admits it has security problems. The 128-bit hashing algorithm made an impact though, it’s influence can be felt in more recent algorithms like WMD5, WRIPEMD and the WHSA family.<br>
 **MD5** – MD5 is another hashing algorithm made by Ray Rivest that is known to suffer vulnerabilities. It was created in 1992 as the successor to MD4. Currently MD6 is in the works, but as of 2009 Rivest had removed it from NIST consideration for SHA-3.<br>
 **SHA** – SHA stands for Security Hashing Algorithm and it’s probably best known as the hashing algorithm used in most SSL/TLS cipher suites. A cipher suite is a collection of ciphers and algorithms that are used for SSL/TLS connections. SHA handles the hashing aspects. SHA-1, as we mentioned earlier, is now deprecated. SHA-2 is now mandatory. SHA-2 is sometimes known has SHA-256, though variants with longer bit lengths are also available.<br>
