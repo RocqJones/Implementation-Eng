@@ -81,8 +81,8 @@ if __name__ == '__main__':
 Webhooks run a large portion of the "magic" that happens between applications. They are sometimes called reverse APIs, callbacks, and even notifications. Many services, such as SendGrid, Stripe, Slack, and GitHub use events to send webhooks as part of their API. This allows your application to listen for events and perform actions when they happen.
 ##### There are a few consistencies across webhook implementations.
 **a.** They are normally `POST` requests.<br>
-**b** They receive `JSON` data.<br>
-**c** They need to respond quickly.<br>
+**b.** They receive `JSON` data.<br>
+**c.** They need to respond quickly.<br>
 
 ##### Requirements: 1. Install Flask
 ```Shell
@@ -183,10 +183,11 @@ $ python3 manage.py createsuperuser
 **b.** *Push Message* – a message sent from the server to the client.<br>
 **c.** *Push Notification* – a notification created in response to a push message.<br>
 **d.** *Notifications API* – an interface used to configure and display notifications to the user.<br>
-**e** *Push API* – an interface used to subscribe your app to a push service and receive push messages in the service worker.<br>
-**f** *Web Push* – an informal term referring to the process or components involved in the process of pushing messages from a server to a client on the web.<br>
-**g** *Push Service* – a system for routing push messages from a server to a client. Each browser implements its own push service.<br>
-**h** *Web Push Protocol* – describes how an application server or user agent interacts with a push service.<br>
+**e.** *Push API* – an interface used to subscribe your app to a push service and receive push messages in the service worker.<br>
+**f.** *Web Push* – an informal term referring to the process or components involved in the process of pushing messages from a server to a client on the web.<br>
+**g.** *Push Service* – a system for routing push messages from a server to a client. Each browser implements its own push service.<br>
+**h.** *Web Push Protocol* – describes how an application server or user agent interacts with a push service.<br>
+
 #### Technologies and configurations you will use to manage load and asynchronous services.
 ##### Request permission
 Before we can create a notification we need to get permission from the user. Below is the code to prompt the user to allow notifications. This goes in the app's main JavaScript file.
