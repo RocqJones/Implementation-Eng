@@ -74,10 +74,14 @@ if __name__ == '__main__':
 
 #### b) WEBHOOKS / HTTP callbacks.
 * For webhooks, implementation is often *not code-based*. They often have modules that are programmable within a web application. Instead of being request-based, **webhooks are event-based**. *They only trigger when specific events occur within a third-party service*.
+* In simple terms **Webhooks** are *automated messages sent from apps when something happens*. They have a *message or payload and are sent to a unique URL* essentially the app's phone number or email address. Webhooks are much like SMS notifications. I have interacted with webhooks through Google Firebase API which are all done with webhooks.
+<a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/webhooks.png" height="350" width="100%" ></a>
 
 #### C) ORCHESTRATION.
 * The most **automated integration option** is *orchestrations*. 
 * Orchestration refers to the process of *automating multiple systems and services together*. Teams will often use software configuration management tools such as [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.1) to build orchestrations. **Software configuration management tools offers** various methods such as *snap-ins or hosting APIs* to connect with applications to manage the automation workflow.
+##### Cloud-orchestration Vs Automation.
+<a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/cloud-orchestration-vs-automation-2.jpg" height="400" width="100%" ></a>
 
 ### 2. Give a walk-through of how you will manage a data streaming application sending one million notifications every hour while giving examples of technologies and  configurations you will use to manage load and asynchronous services.
 
