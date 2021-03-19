@@ -271,4 +271,4 @@ Just like we did with encryption, let’s take a look at some of the most common
 
 ## Section B.
 ### 1. Create a login and a success page in Django. A mockup of the created pages should also be submitted. The mockups should have been created by using advanced design wireframe tools thus showcasing prowess in usage of the tools and use of production server deployments on uwsgi/nginx. Ensure that the sessions are well and securely managed.
-[Question 1](https://github.com/RocqJones/Implementation-Eng/section2)
+[Question 1](https://github.com/RocqJones/Implementation-Eng/tree/main/section2/Q1LoginSuccessPage)
