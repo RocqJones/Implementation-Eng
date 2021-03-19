@@ -1,5 +1,5 @@
 """
-WSGI config for loginSuccessPage project.
+WSGI config for mysite project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'loginSuccessPage.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
 
 application = get_wsgi_application()
+
+from helloworld.wsgi import HelloWorldApplication
+application = HelloWorldApplication(application)
