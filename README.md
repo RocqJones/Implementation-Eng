@@ -77,13 +77,107 @@ if __name__ == '__main__':
 * In simple terms **Webhooks** are *automated messages sent from apps when something happens*. They have a *message or payload and are sent to a unique URL* essentially the app's phone number or email address. Webhooks are much like SMS notifications. I have interacted with webhooks through Google Firebase API which are all done with webhooks.
 <a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/webhooks.png" height="350" width="100%" ></a>
 
+##### Webhooks python flask.
+Webhooks run a large portion of the "magic" that happens between applications. They are sometimes called reverse APIs, callbacks, and even notifications. Many services, such as SendGrid, Stripe, Slack, and GitHub use events to send webhooks as part of their API. This allows your application to listen for events and perform actions when they happen.
+##### There are a few consistencies across webhook implementations.
+**a.** They are normally `POST` requests.<br>
+**b** They receive `JSON` data.<br>
+**c** They need to respond quickly.<br>
+
+##### Requirements: 1. Install Flask
+```Shell
+$ python3 -m pip install Flask
+```
+
+##### 2. Receive a webhook with Flask.
+Imports the Flask class along with the `request` and Response objects. Then instantiates it with a name of `__name__` before assigning it to the `app` variable. This naming scheme is convention in the Flask documentation.
+```Python
+from flask import Flask, request, Response
+
+app = Flask(__name__)
+
+@app.route('/webhook', methods=['POST'])
+def respond():
+    print(request.json);
+    return Response(status=200)
+```
+
+##### Receive a webhook with Django.
+##### a. Install django.
+As a more traditional Model-View-Controller (MVC) framework, Django scaffolds out the main parts of the project for you.
+`python3 -m pip install Django`
+* CREATING VIRTUAL ENVIRONMENT
+```
+$ python3 -m venv myvenv
+```
+* SWITCHING TO VENV
+```
+$ source myvenv/bin/activate 
+```
+or 
+```
+$ . myvenv/bin/activate 
+```
+* START A PROJECT
+```Shell
+$ django-admin startproject webhooks.
+```
+##### b. Open the file webhooks/views.py. Here we will write the logic for handling a route.
+```Python
+from django.http import HttpResponse
+from django.views.decorators.http import require_POST
+
+@require_POST
+def example(request):
+	return HttpResponse('Hello, world. This is the webhook response.')
+```
+* This code does the following:
+- It imports the `HttpResponse` object that will be used to send a response.
+- It imports a special decorator to limit the request method. In Django, routes accept all HTTP methods by default and let the views manage which methods they respond to.
+- Calls the decorator to limit the function that follows to only the `POST` method.
+- Defines a function, named example that takes the request as an argument and returns a response.
+
+* Next, create webhooks/urls.py if it doesn't already exist. This is where we organize routes within this sub-app of our project.
+```Python
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('webhooks/', include('webhooks.urls'))
+]
+```
+* CREATING DATABASE (sqlite3)
+```
+$ python3 manage.py migrate
+```
+* RUN SERVER
+```
+$ python3 manage.py runserver
+```
+* CREATING SUPERUSER
+This is done after configuring admin section inside the app.
+```
+$ python3 manage.py createsuperuser
+```
+`[admin, admin@admin.com, p@$$w0rd]`
+
 #### C) ORCHESTRATION.
 * The most **automated integration option** is *orchestrations*. 
 * Orchestration refers to the process of *automating multiple systems and services together*. Teams will often use software configuration management tools such as [PowerShell](https://docs.microsoft.com/en-us/powershell/scripting/overview?view=powershell-7.1) to build orchestrations. **Software configuration management tools offers** various methods such as *snap-ins or hosting APIs* to connect with applications to manage the automation workflow.
 ##### Cloud-orchestration Vs Automation.
 <a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/cloud-orchestration-vs-automation-2.jpg" height="400" width="100%" ></a>
-
+    
 ### 2. Give a walk-through of how you will manage a data streaming application sending one million notifications every hour while giving examples of technologies and  configurations you will use to manage load and asynchronous services.
+**Push notifications** are short popup messages sent by a web-based application server to the client application.
+* They’re a great tool to improve your app’s engagement level and website traffic. 
+* To understand the definition of push notifications, we need to clear our concept of the client-server communication.
+* The server is any computer/program that sends information over a network to the client, which is the receiving computer/program. 
+* In a typical client-server exchange, the client asks for data and the server sends the requested information. 
+* We use “push notification” when the server sends the information to the client without the client asking for it. So, the information is “pushed” by the server to the client.
+* All brands that use push notifications as a marketing strategy, use them as a part of a larger campaign, and not only to push traffic to their content.
+* There are plenty of examples of best practices about how one may use push notifications. The truth is that push notifications are powerful for both websites and mobile apps.
+* Brands like National Geographic and Ford have successfully leveraged the power of push notifications to get customers engaged with their content.
 
 ### 3. Give examples of different encryption/hashing methods you have come across (one way and two way) and give example scripts in python 3 on how to achieve each one.
 
