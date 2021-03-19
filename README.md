@@ -168,7 +168,7 @@ $ python3 manage.py createsuperuser
 ##### Cloud-orchestration Vs Automation.
 <a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/cloud-orchestration-vs-automation-2.jpg" height="400" width="100%" ></a>
     
-### 2. Give a walk-through of how you will manage a data streaming application sending one million notifications every hour while giving examples of technologies and  configurations you will use to manage load and asynchronous services.
+### 2. Give a walk-through of how you will manage a data streaming application sending one million notifications every hour while giving examples of technologies and configurations you will use to manage load and asynchronous services.
 **Push notifications** are short popup messages sent by a web-based application server to the client application.
 * They’re a great tool to improve your app’s engagement level and website traffic. 
 * To understand the definition of push notifications, we need to clear our concept of the client-server communication.
@@ -178,8 +178,94 @@ $ python3 manage.py createsuperuser
 * All brands that use push notifications as a marketing strategy, use them as a part of a larger campaign, and not only to push traffic to their content.
 * There are plenty of examples of best practices about how one may use push notifications. The truth is that push notifications are powerful for both websites and mobile apps.
 * Brands like National Geographic and Ford have successfully leveraged the power of push notifications to get customers engaged with their content.
+#### Push Notification Terms
+**a.** *Notification* – a message displayed to the user outside of the app's normal UI (i.e., the browser).<br>
+**b.** *Push Message* – a message sent from the server to the client.<br>
+**c.** *Push Notification* – a notification created in response to a push message.<br>
+**d.** *Notifications API* – an interface used to configure and display notifications to the user.<br>
+**e** *Push API* – an interface used to subscribe your app to a push service and receive push messages in the service worker.<br>
+**f** *Web Push* – an informal term referring to the process or components involved in the process of pushing messages from a server to a client on the web.<br>
+**g** *Push Service* – a system for routing push messages from a server to a client. Each browser implements its own push service.<br>
+**h** *Web Push Protocol* – describes how an application server or user agent interacts with a push service.<br>
+#### Technologies and configurations you will use to manage load and asynchronous services.
+##### Request permission
+Before we can create a notification we need to get permission from the user. Below is the code to prompt the user to allow notifications. This goes in the app's main JavaScript file.
+* `JavaScript`
+main.js
+```JavaScript
+Notification.requestPermission(function(status) {
+    console.log('Notification permission status:', status);
+});
+```
+We call the `requestPermission` method on the global Notification object. This displays a pop-up message from the browser requesting permission to allow notifications. The user's response is stored along with your app, so calling this again returns the user's last choice. Once the user grants permission, the app can display notifications.
+#### Display a notification
+* We can show a notification from the app's main script with the `showNotification` method (the "Invocation API"). Here is an example:<br>
+main.js
+```JavaScript
+function displayNotification() {
+  if (Notification.permission == 'granted') {
+    navigator.serviceWorker.getRegistration().then(function(reg) {
+      reg.showNotification('Hello world!');
+    });
+  }
+}
+```
+#### Add notification options
+The showNotification method has an optional second argument for configuring the notification. The following example code demonstrates some of the available options. See the showNotification reference on MDN for a complete explanation of each option.<br>
+main.js
+```JavaScript
+function displayNotification() {
+  if (Notification.permission == 'granted') {
+    navigator.serviceWorker.getRegistration().then(function(reg) {
+      var options = {
+        body: 'Here is a notification body!',
+        icon: 'images/example.png',
+        vibrate: [100, 50, 100],
+        data: {
+          dateOfArrival: Date.now(),
+          primaryKey: 1
+        }
+      };
+      reg.showNotification('Hello world!', options);
+    });
+  }
+}
+```
+* The **body** option adds a main description to the notification. It should give the user enough information to decide how to act on it.
+* The **icon** option attaches an image to make the notification more visually appealing, but also more relevant to the user. For example, if it's a message from their friend you might include an image of the sender's avatar.
+* The **vibrate** option specifies a vibration pattern for a phone receiving the notification. In our example, a phone would vibrate for 100 milliseconds, pause for 50 milliseconds, and then vibrate again for 100 milliseconds.
+* The **data** option attaches custom data to the notification, so that the service worker can retrieve it when the user interacts with the notification. For instance, adding a unique "id" or "key" option to the data allows us to determine which notification was clicked when the service worker handles the click event.
+#### Listen for events
+* Displaying a notification was the first step. Now we need to handle user interactions in the service worker (using the "Interaction API"). Once the user has seen your notification they can either dismiss it or act on it.
+#### The notificationclose event
+* If the user dismisses the notification through a direct action on the notification (such as a swipe in Android), it raises a notificationclose event inside the service worker.
+* This event is important because it tells you how the user is interacting with your notifications. You might, for example, log the event to your analytics database. Or, you might use the event to synchronize your database and avoid re-notifying the user of the same event.
+* Here is an example of a `notificationclose` event listener in the service worker:
+serviceworker.js
+```JavaScript
+self.addEventListener('notificationclose', function(e) {
+  var notification = e.notification;
+  var primaryKey = notification.data.primaryKey;
+
+  console.log('Closed notification: ' + primaryKey);
+});
+```
 
 ### 3. Give examples of different encryption/hashing methods you have come across (one way and two way) and give example scripts in python 3 on how to achieve each one.
+**Encryption** is a two-way function; what is encrypted can be decrypted with the proper key.<br>
+* Encryption is the practice of scrambling information in a way that only someone with a corresponding key can unscramble and read it. Encryption is a two-way function. When you encrypt something, you’re doing so with the intention of decrypting it later.
+##### Common forms of encryption are:
+**1. Asymmetric Encryption** – This is the Public Key example we just gave. One key encrypts, the other key decrypts. The encryption only goes one way. This is the concept that forms the foundation for PKI (public key infrastructure), which is the trust model that undergirds SSL/TLS.<br>
+**2. Symmetric Encryption** – This is closer to a form of private key encryption. Each party has its own key that can both encrypt and decrypt. As we discussed in the example above, after the asymmetric encryption that occurs in the SSL handshake, the browser and server communicate using the symmetric session key that is passed along.
+<a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/encription.png" height="250" width="100%" ></a>
+
+**Hashing**, however, is a one-way function that scrambles plain text to produce a unique message digest. With a properly designed algorithm, there is no way to reverse the hashing process to reveal the original password.
+<a href="url"><img src="https://github.com/RocqJones/Implementation-Eng/blob/main/imgs/hashing.png" height="250" width="100%" ></a>
+##### Common Hashing Algorithms.
+Just like we did with encryption, let’s take a look at some of the most common hashing algorithms in use today.
+**MD4** – MD4 is a self-loathing hash algorithm, created in 1990, even its creator, Ronald Rivest, admits it has security problems. The 128-bit hashing algorithm made an impact though, it’s influence can be felt in more recent algorithms like WMD5, WRIPEMD and the WHSA family.<br>
+**MD5** – MD5 is another hashing algorithm made by Ray Rivest that is known to suffer vulnerabilities. It was created in 1992 as the successor to MD4. Currently MD6 is in the works, but as of 2009 Rivest had removed it from NIST consideration for SHA-3.<br>
+**SHA** – SHA stands for Security Hashing Algorithm and it’s probably best known as the hashing algorithm used in most SSL/TLS cipher suites. A cipher suite is a collection of ciphers and algorithms that are used for SSL/TLS connections. SHA handles the hashing aspects. SHA-1, as we mentioned earlier, is now deprecated. SHA-2 is now mandatory. SHA-2 is sometimes known has SHA-256, though variants with longer bit lengths are also available.<br>
 
 ## Section B.
 ### 1. Create a login and a success page in Django. A mockup of the created pages should also be submitted. The mockups should have been created by using advanced design wireframe tools thus showcasing prowess in usage of the tools and use of production server deployments on uwsgi/nginx. Ensure that the sessions are well and securely managed.
